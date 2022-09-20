@@ -34,11 +34,11 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
     console.log(interaction.data.name)
-    if(interaction.data.name == 'yo'){
+    if(interaction.data.name == 'test'){
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
-          content: `Yo ${interaction.member.user.username}!`,
+          content: `testing, ${interaction.member.user.username}!`,
         },
       });
     }
@@ -51,7 +51,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
       try{
         // https://discord.com/developers/docs/resources/channel#create-message
         let res = await discord_api.post(`/channels/${c.id}/messages`,{
-          content:'Yo! I got your slash command. I am not able to respond to DMs just slash commands.',
+          content:'Some sorta form?',
         })
         console.log(res.data)
       }catch(e){
@@ -62,7 +62,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
         // https://discord.com/developers/docs/interactions/receiving-and-responding#responding-to-an-interaction
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data:{
-          content:'👍'
+          content:'DM sent!'
         }
       });
     }
@@ -75,13 +75,13 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 app.get('/register_commands', async (req,res) =>{
   let slash_commands = [
     {
-      "name": "yo",
-      "description": "replies with Yo!",
+      "name": "test",
+      "description": "just a test",
       "options": []
     },
     {
       "name": "dm",
-      "description": "sends user a DM",
+      "description": "sends a dm",
       "options": []
     }
   ]

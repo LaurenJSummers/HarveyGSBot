@@ -34,11 +34,19 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
     console.log(interaction.data.name)
-    if(interaction.data.name == 'test'){
+    if(interaction.data.name == 'info'){
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
-          content: `testing, ${interaction.member.user.username}!`,
+          content: ``` Welcome to HGS Unblock Discord.
+	  
+	  Here, you can buy a premium domain for an unblocker (holy unblocker, no rights reservered).
+	  
+	  You can share your unblocker once you have bought it, however, the more it is shared, the more likely it will be banned.
+	  
+	  More info on buying unblockers can be found after running the command /signup in the premium-register channel.
+	  
+	  Free unblockers are availiable in the locked channels on display, and can be used by anyone. ```,
         },
       });
     }
